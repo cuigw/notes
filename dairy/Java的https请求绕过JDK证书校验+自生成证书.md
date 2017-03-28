@@ -1,4 +1,4 @@
-# java的https请求绕过JDK证书校验
+#java的https请求绕过JDK证书校验+自生成证书
 ------------------------
 [toc]
 
@@ -86,3 +86,22 @@ public class HttpsIgnoreCertUtil {
 
 ### 资料
 [java请求https地址如何绕过证书验证](http://www.cnblogs.com/javaee6/p/3714769.html)
+
+
+## 自生成证书
+**1.** [生成证书并配置tomcat](ttp://jingyan.baidu.com/article/a948d6515d3e850a2dcd2ee6.htm)
+**2.tomcat中server.xml中http配置成443端口。这样就不需要配置端口号了**
+``` xml
+    <Connector port="443" protocol="org.apache.coyote.http11.Http11Protocol"
+               maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
+               clientAuth="false" sslProtocol="TLS"
+               keystoreFile="D:\\keys\\tomcat.keystore" keystorePass="caocao123"
+							 truststoreFile="D:\\keys\\tomcat.keystore" truststorePass="caocao123"/>
+```
+**3. JVM中导入受信任证书（正规）**
+	keytool -import -keystore D:\jdk1.8.0_121\jre\lib\security\cacerts -file D:/keys/tomcat.cer -alias tomcat
+        不导入的话会报 unable to find valid certification path to requested target
+	通常这种情况下是因为服务器的部分或者全部证书 不是 由 证书颁发机构颁发的
+	而是自生成或者有其他私人机构颁发的，所以我们本地的truststore对服务器证书进行校验的时候会报错。
+**4. 删除证书**
+keytool -delete -alias tomcat -keystore cacerts 
