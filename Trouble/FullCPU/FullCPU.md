@@ -9,31 +9,38 @@
 ### 背景
 由于之前做了个单点登录，导致首次访问子系统都要去验证登录、获取权限，生成seesion，速度慢，用户体验差
 故做了个ajax请求，去提前获取session，当时做完自测的时候是有302错误的，没有在意，觉得并不影响，然后直接上线。
-结果炸了，2天以后cpu 100%, 如下图， 从其之后正常， 又过了1天 又100%。
+结果炸了，2天以后cpu 100%, 如下图， 重启之后正常， 过了1天 又100%。
 
 
 ### 解决过程
 执行 `top` 命令， 结果如下
+<br>
 ![user](img/CPUList2.png)
 
 执行 `top -H -p25493`
+<br>
 ![user](img/CPUList.png)
 
 执行 `jstack 25493 | grep -A 40 63a5` 发现占用cpu的线程是gc， 初步认定是堆内存爆满
 
 看了下pinpoint 更加直观 如下
+<br>
 ![user](img/PinpointError.png)
 
 重启之后 正常
+<br>
 ![user](img/PinpointRestart.png)
 
 jmap 保存快照。
-
-VisualVM分析 有个OM 错误
+<br>
+VisualVM分析快照 有个OM 错误
+<br>
 ![user](img/OutOfMemoryException.png)
+<br>
 ![user](img/堆内存溢出.png)
 
-JProfilter分析  session 有300W个  惊呆了。。。
+JProfilter分析快照  session 有300W个  惊呆了。。。
+<br>
 ![user](img/session.png)
 
 ### 故障原因分析
