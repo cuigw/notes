@@ -79,11 +79,11 @@ JSP引擎对标签进行实例化对象后，会先调用`setPageContext()`方�
 ```
 #### .tld文件文件
 **这里需要注意**的是，如果要通过这个文件中配置的`uri`查找这个文件的话，这个文件需要放在`resources/META-INF`文件夹下面，不然会提示找不到这个文件。
-引入方式为`<%@ taglib prefix="shiro" uri="http://www.caocao.com/tags" %>`
+引入方式为`<%@ taglib prefix="shiro" uri="http://www.caouucao.com/tags" %>`
 使用方式为`<shiro:hasPermission name="/user/addUser">新增</shiro:hasPermission>`
 ``` xml
 <?xml version="1.0" encoding="UTF-8" ?>
-<!-- caocao 运营支撑自定义JSP标签 主要用户权限判断-->
+<!-- caouucao 运营支撑自定义JSP标签 主要用户权限判断-->
 <!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
   "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
 
@@ -93,17 +93,17 @@ JSP引擎对标签进行实例化对象后，会先调用`setPageContext()`方�
 
   <jsp-version>1.2</jsp-version>
 
-  <short-name>caocaoTag</short-name>
+  <short-name>caouucaoTag</short-name>
 
-  <uri>http://www.caocao.com/tags</uri>
+  <uri>http://www.caouucao.com/tags</uri>
 
-  <description>caocao JSP Tag Library.</description>
+  <description>caouucao JSP Tag Library.</description>
 
   <tag>
     <!--定义标签名。 --> 
     <name>hasPermission</name>
     <!-- 处理类，需要自定义 -->
-    <tag-class>com.caocao.auth.tags.HasPermissionTag</tag-class>
+    <tag-class>com.caouucao.auth.tags.HasPermissionTag</tag-class>
     <body-content>JSP</body-content>
     <description>Displays body content only if the current user
       'has' (implies) the specified permission (i.e the user has the specified ability).

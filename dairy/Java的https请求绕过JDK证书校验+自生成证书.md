@@ -95,8 +95,8 @@ public class HttpsIgnoreCertUtil {
     <Connector port="443" protocol="org.apache.coyote.http11.Http11Protocol"
                maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
                clientAuth="false" sslProtocol="TLS"
-               keystoreFile="D:\\keys\\tomcat.keystore" keystorePass="caocao123"
-							 truststoreFile="D:\\keys\\tomcat.keystore" truststorePass="caocao123"/>
+               keystoreFile="D:\\keys\\tomcat.keystore" keystorePass="caouucao123"
+							 truststoreFile="D:\\keys\\tomcat.keystore" truststorePass="caouucao123"/>
 ```
 **3. JVM中导入受信任证书（正规）**
 	keytool -import -keystore D:\jdk1.8.0_121\jre\lib\security\cacerts -file D:/keys/tomcat.cer -alias tomcat

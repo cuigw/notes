@@ -20,7 +20,7 @@
     <!-- 操作日志记录 -->
     <aop:config>
         <aop:aspect id="operateLogAspect" ref="operateLogAspect">
-            <aop:pointcut id="logPointcut" expression="execution(* com.caocao.authcenter.web.controller.*.*(..)))"/>
+            <aop:pointcut id="logPointcut" expression="execution(* com.caouucao.authcenter.web.controller.*.*(..)))"/>
             <aop:before pointcut-ref="logPointcut" method="before"/>
             <aop:after  pointcut-ref="logPointcut" method="after"/>
             <aop:around pointcut-ref="logPointcut" method="around"/>
@@ -30,10 +30,10 @@
 
 
 ``` java
-package com.caocao.authcenter.web.aop;
+package com.caouucao.authcenter.web.aop;
 
 
-import com.caocao.authcenter.util.utils.RequestUtil;
+import com.caouucao.authcenter.util.utils.RequestUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
